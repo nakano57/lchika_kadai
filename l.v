@@ -58,7 +58,6 @@ module lchila(
 
     wire ledcnten = (cnt25[22:0]==23'h7fffff);
 
-
     reg [2:0] cnt3;
 
     always @(posedge CLK) begin
@@ -75,10 +74,12 @@ module lchila(
             else  begin
                 cnt3 <= cnt3 + 1'h1;
             end
-        end
+         end
+       end
+      end
     end
 
-    function [3:0] ouhuku( input [2:0] in );
+function [3:0] ouhuku( input [2:0] in );
     begin
       case(in)
              3'd0: ouhuku = 4'b0001;
@@ -116,7 +117,7 @@ module lchila(
     end
     endfunction
 
-    endfunction
+
 
     always @* begin
         case(pattern)

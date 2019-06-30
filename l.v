@@ -37,12 +37,15 @@ module lchila(
     always @(posedge CLK) begin
         if(RST)
             pattern <=2'h0;
-        else if (pattern == 2'd3)
-               pattern <= 2'h0;
         else if (UP)
-            pattern <= pattern + 2'h1;
-        else if (DOWN)
-            pattern <= pattern - 2'h1;
+            pattern <= pattern + 2'd1;
+        else if (DOWN) begin
+            if (pattern == 2'd0)
+                pattern <= pattern + 2'd2;
+            else
+                pattern <= pattern + 2'd3;
+        end else if (pattern == 2'd3)
+               pattern <= 2'h0;
     end
 
     reg [24:0] cnt25 =25'h0;

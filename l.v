@@ -61,22 +61,27 @@ module lchila(
     reg [2:0] cnt3;
 
     always @(posedge CLK) begin
-        if(RST)begin
-            cnt3 <= 3'h0;
-        end else if (ledcnten) begin
+      if(RST)begin
+        cnt3 <= 3'h0;
+      end else if (ledcnten) begin
+
             if(pattern == 3'd0)begin
-                if(cnt3 == 3'd5)begin
-                    cnt3 <='h0;
+
+                if(cnt3 == 3'd5) begin
+                  cnt3 <=3'h0;
+                 end else begin
+                   cnt3 <= cnt3 + 1'h1;
+                 end
+
             end else begin
-                    if(cnt3 == 3'd3)begin
-                    cnt3 <='h0;
+
+                if(cnt3 == 3'd3) begin
+                  cnt3 <=3'h0;
+                end else begin
+                  cnt3 <= cnt3 + 1'h1;
                 end
-            else  begin
-                cnt3 <= cnt3 + 1'h1;
             end
-         end
-       end
-      end
+        end
     end
 
 function [3:0] ouhuku( input [2:0] in );
